@@ -6,6 +6,8 @@ final class Rules {
 
 	public static function php7x4(): array {
 		return [
+			'@PHP7x4Migration' => true,
+
 			'php_unit_test_case_static_method_calls' => [
 				'call_type' => 'this',
 			],
@@ -164,8 +166,6 @@ final class Rules {
 			'native_function_casing'         => true,
 			'native_type_declaration_casing' => true,
 
-			'@PHP7x4Migration' => true,
-
 			'trailing_comma_in_multiline' => [
 				'elements'      => [ 'arrays', 'arguments' ],
 				'after_heredoc' => true,
@@ -177,8 +177,9 @@ final class Rules {
 		$rules = self::php7x4();
 		unset($rules['@PHP7x4Migration']);
 
-		return array_merge($rules, [
-			'@PHP8x1Migration'            => true,
+		return array_merge([
+			'@PHP8x1Migration' => true,
+		], $rules, [
 			'modernize_strpos'            => true,
 			'php_unit_attributes'         => true,
 			'stringable_for_to_string'    => true,
@@ -193,8 +194,9 @@ final class Rules {
 		$rules = self::php8x1();
 		unset($rules['@PHP8x1Migration']);
 
-		return array_merge($rules, [
-			'@PHP8x2Migration'               => true,
+		return array_merge([
+			'@PHP8x2Migration' => true,
+		], $rules, [
 			'no_redundant_readonly_property' => true,
 		]);
 	}
@@ -203,9 +205,9 @@ final class Rules {
 		$rules = self::php8x2();
 		unset($rules['@PHP8x2Migration']);
 
-		return array_merge($rules, [
+		return array_merge([
 			'@PHP8x5Migration' => true,
-		]);
+		], $rules);
 	}
 
 }
