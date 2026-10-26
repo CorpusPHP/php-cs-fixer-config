@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="Corpus PHP-CS-Fixer Configuration">
+    <description>Checks package code with Corpus Coding Standard.</description>
+
+    <file>src</file>
+    <file>test</file>
+
+    <rule ref="Corpus"/>
+</ruleset>
