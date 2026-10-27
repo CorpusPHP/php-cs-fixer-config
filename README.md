@@ -1,19 +1,24 @@
 # PHP-CS-Fixer Configuration
 
+[![Latest Stable Version](https://poser.pugx.org/corpus/php-cs-fixer-config/version)](https://packagist.org/packages/corpus/php-cs-fixer-config)
+[![License](https://poser.pugx.org/corpus/php-cs-fixer-config/license)](https://packagist.org/packages/corpus/php-cs-fixer-config)
+[![ci.yml](https://github.com/CorpusPHP/php-cs-fixer-config/actions/workflows/ci.yml/badge.svg)](https://github.com/CorpusPHP/php-cs-fixer-config/actions/workflows/ci.yml)
+
+
 This package shares the PHP-CS-Fixer rules used by Corpus projects. It does not
 choose files to fix. Each project owns its own Finder.
 
 ## Requirements
 
-- PHP 7.4, or PHP 8.0 through 8.6
-- PHP-CS-Fixer 3.95 or later
+- **php**: ^7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0 || ~8.6.0
+- **friendsofphp/php-cs-fixer**: ^3.95
 
 ## Installation
 
-Install the package as a development dependency:
+Install the latest version with:
 
-```sh
-composer require --dev corpus/php-cs-fixer-config
+```bash
+composer require --dev 'corpus/php-cs-fixer-config'
 ```
 
 `friendsofphp/php-cs-fixer` is a package dependency because the factory creates
@@ -31,9 +36,9 @@ use Corpus\PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
 return Config::php7x4()
-    ->setFinder(
-        Finder::create()->in(__DIR__ . '/src'),
-    );
+	->setFinder(
+		Finder::create()->in(__DIR__ . '/src'),
+	);
 ```
 
 Choose a factory for the lowest PHP version supported by the project:
@@ -60,11 +65,11 @@ use PhpCsFixer\Finder;
 $config = Config::php8x2();
 
 return $config
-    ->setRules([
-        ...$config->getRules(),
-        'ordered_imports' => false,
-    ])
-    ->setFinder(Finder::create()->in(__DIR__));
+	->setRules([
+		...$config->getRules(),
+		'ordered_imports' => false,
+	])
+	->setFinder(Finder::create()->in(__DIR__));
 ```
 
 ## Updating

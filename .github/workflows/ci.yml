@@ -27,5 +27,8 @@ jobs:
       - name: Resolve dependencies with Composer
         run: composer update --no-interaction --prefer-dist
 
+      - name: Verify documentation is current
+        run: vendor/bin/mddoc --dry-run=true
+
       - name: Run tests
         run: make test
