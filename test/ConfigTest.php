@@ -93,14 +93,18 @@ final class ConfigTest extends TestCase {
 		$this->assertNotEmpty($factories);
 
 		foreach ($factories as $factory) {
-			$migrations = array_filter(
-				array_keys(Config::{$factory}()->getRules()),
-				static function (string $rule): bool {
-					return preg_match('/^@PHP\d+x\d+Migration$/', $rule) === 1;
-				},
+			$rules = Config::{$factory}()->getRules();
+			$migrations = array_values(
+				array_filter(
+					array_keys($rules),
+					static function (string $rule): bool {
+						return preg_match('/^@PHP\d+x\d+Migration$/', $rule) === 1;
+					},
+				),
 			);
 
 			$this->assertCount(1, $migrations, $factory);
+			$this->assertSame($migrations[0], array_key_first($rules), $factory);
 		}
 	}
 
